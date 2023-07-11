@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # atguigu-shop
 
 ## Project setup
@@ -22,3 +23,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# code-nav
+前端练手项目，仿照前端编程导航
+>>>>>>> c7228366eb966e3baa3c979de797a421bdabdc31
