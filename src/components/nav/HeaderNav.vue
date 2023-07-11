@@ -41,7 +41,6 @@ export default {
 <style scoped lang="less">
 :deep.el-menu {
     width: 100%;
-
     box-shadow: 0 -1px 2px #000;
     position: relative;
 

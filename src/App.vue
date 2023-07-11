@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <header-nav/>
     <router-view />
   </div>
 </template>
 
 <script>
-import HeaderNav from './components/nav/HeaderNav.vue'
-
 export default {
-  name: 'App',
-  components:{
-    HeaderNav
-  }
+  name: 'App'
 }
 </script>
 
-<style></style>
+<style scoped lang="less">
+#app{
+  width: 100%;
+  height: 100%;
+}
+</style>
