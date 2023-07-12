@@ -13,8 +13,14 @@
             </el-image>
         </div>
         <div class="wx-tip">
-            <p>使用微信扫一扫登录</p>
-            <p>“编程导航”</p>
+            <div v-show="!isShowScanSuccess">
+                <p>使用微信扫一扫登录</p>
+                <p>“编程导航”</p>
+            </div>
+            <div class="scan-success" v-show="isShowScanSuccess">
+                <img src="../assets/images/success.png" alt="">
+                <span>扫码成功~，点击“登录”继续登录</span>
+            </div>
         </div>
     </div>
 </template>
@@ -27,6 +33,7 @@ export default {
             websocket: null,
             qrUrl: "",
             qrCode: 0,
+            isShowScanSuccess: false
         }
     },
     mounted() {
@@ -48,7 +55,7 @@ export default {
 
         },
         initWebSocket(qrCode) {
-            const websocketUrl =  `ws://127.0.0.1:8081/websocket/${qrCode}`;
+            const websocketUrl = `ws://127.0.0.1:8081/websocket/${qrCode}`;
             this.websocket = new WebSocket(websocketUrl);
             this.websocket.onmessage = this.webSocketOnMessage;
             this.websocket.onopen = this.webSocketOnOpen;
@@ -57,13 +64,23 @@ export default {
         },
         webSocketOnOpen() { //连接建立之后执行send方法发送数据
             console.log('websocket建立链接');
-            
+
         },
         webSocketOnError() {//连接建立失败重连
-            this.initWebSocket();
+            this.initWebSocket(this.qrCode);
         },
         webSocketOnMessage(e) { //数据接收
-            console.log("前端收到后端推送消息",e)
+            let dataJson = JSON.parse(e.data)
+            switch (dataJson.type) {
+                case 1:
+                    console.log("收到扫码成功的消息")
+                    this.isShowScanSuccess = true
+                    break;
+                case 2:
+                    console.log("收到登录成功的消息")
+                    this.$router.replace("/home")
+                    break;
+            }
         },
         webSocketSend(Data) {//数据发送
             this.websocket.send(Data);
@@ -114,13 +131,24 @@ export default {
         margin: auto;
     }
 
-    .wx-tip{
-        width: 200px;
+    .wx-tip {
+        width: 260px;
         text-align: center;
         padding: 10px 15px;
         color: rgb(55, 55, 55);
         line-height: 1.6;
         margin: 20px auto;
+
+        .scan-success {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
 }
 
