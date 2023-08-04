@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import api from './api'
 import router from '@/router'
+import '@/assets/css/reset.css'
 
 import { Menu,MenuItem,Submenu,Avatar,Tooltip,Message,Image,Result  } from 'element-ui';
 
-import '@/assets/css/reset.css'
 
 Vue.use(Menu)
 Vue.use(MenuItem)

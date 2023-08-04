@@ -6,13 +6,18 @@
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App",
+};
 </script>
 
 <style scoped lang="less">
-#app{
-  width: 100%;
-  height: 100%;
+#app {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("@/assets/images/bg.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
 }
 </style>
