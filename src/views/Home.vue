@@ -48,7 +48,6 @@ export default {
             border-radius: 16px;
         }
     }
-
     .footer {
         margin-top: 7vh;
         font-size: 12px;
