@@ -1,4 +1,5 @@
 const path = require("path");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = (dir) => path.join(__dirname, dir);
 module.exports = {
@@ -26,6 +27,7 @@ module.exports = {
       .set("@", resolve("src"))
       .set("assets", resolve("src/assets"))
       .set("components", resolve("src/components"))
-      .set("static", resolve("src/static"));
+      .set("static", resolve("src/static"))
+      .set("utils", resolve("src/utils"));
   },
 };
