@@ -1,7 +1,7 @@
 <template>
     <main class="home">
         <div class="wrapper">
-
+            <ToolBar></ToolBar>
         </div>
         <footer class="footer">
             <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">闽ICP备2023004110号</a>
@@ -10,12 +10,17 @@
 </template>
 
 <script>
+import ToolBar from '@/components/toolbar/index.vue'
+
 export default {
     name: "Home",
     data() {
         return {
 
         }
+    },
+    components:{
+        ToolBar
     }
 }
 </script>

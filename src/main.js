@@ -6,18 +6,18 @@ import '@/assets/css/reset.css'
 // WebSocket处理
 import ws from '@/utils/websocket.js'
 
-import { Menu,MenuItem,Submenu,Avatar,Tooltip,Message,Image,Result  } from 'element-ui';
+import { Form,FormItem,Input,Avatar,Button,Message,Image,Dialog} from 'element-ui';
 
 
 Vue.prototype.$ws = ws
 
-Vue.use(Menu)
-Vue.use(MenuItem)
-Vue.use(Submenu)
+Vue.use(Dialog)
+Vue.use(Form)
+Vue.use(FormItem)
 Vue.use(Avatar)
-Vue.use(Tooltip)
+Vue.use(Input)
 Vue.use(Image)
-Vue.use(Result)
+Vue.use(Button)
 
 Vue.prototype.$message=Message;
 Vue.config.productionTip = false

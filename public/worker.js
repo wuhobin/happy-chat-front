@@ -165,7 +165,6 @@ self.onmessage = (e) => {
     case 'initWS':
       // 如果是initWS就建立ws连接
       initConnection()
-      console.log("初始化websocket连接",JSON.parse(e.data));
       break
     case 'message':
       /**
