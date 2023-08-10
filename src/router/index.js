@@ -5,14 +5,6 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
   routes: [
-    {
-      name: "home",
-      path: "/",
-      component: () => import("@/views/Home")
-    },
-    {
-      path: "*",
-      redirect: "/",
-    },
+    
   ],
 });

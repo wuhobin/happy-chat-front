@@ -2,6 +2,7 @@
     <main class="home">
         <div class="wrapper">
             <ToolBar></ToolBar>
+            <router-view/>
         </div>
         <footer class="footer">
             <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">闽ICP备2023004110号</a>
