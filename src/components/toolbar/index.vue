@@ -12,6 +12,7 @@
       ref="upload"
       :show-file-list="false"
       :headers="{ Token: getLoginToken() }"
+      :data="{ userId: getUserId() }"
       :on-success="handleAvatarSuccess"
       :before-upload="beforeAvatarUpload"
       :disabled="uploadEnabled"
@@ -96,22 +97,33 @@ export default {
       ban: false,
       time: "获取",
       timeKey: true,
-      avatarUrl: getUserInfo().avatar ? getUserInfo().avatar : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+      avatarUrl: getUserInfo()
+        ? getUserInfo().avatar
+          ? getUserInfo().avatar
+          : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+        : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     };
   },
   methods: {
     getLoginToken() {
       return getToken();
     },
+    getUserId() {
+      return getUserInfo() ? getUserInfo().id : null;
+    },
     handleUploadClick() {
       this.showLoginBox();
     },
     handleAvatarSuccess(res, file) {
-      const downloadUrl = res.data.downloadUrl;
-      const userInfo = getUserInfo();
-      userInfo.avatar = downloadUrl;
-      setUserInfo(userInfo);
-      this.avatarUrl = downloadUrl
+      if (res.code === 200) {
+        const downloadUrl = res.data.downloadUrl;
+        const userInfo = getUserInfo();
+        userInfo.avatar = downloadUrl;
+        setUserInfo(userInfo);
+        this.avatarUrl = downloadUrl;
+      } else {
+        this.$message.error(res.msg);
+      }
     },
     beforeAvatarUpload() {},
     showLoginBox() {
@@ -146,6 +158,9 @@ export default {
                   this.userInfo = data.userVo;
                   this.loading.login = false;
                   this.dialogFormVisible = false;
+                  this.avatarUrl = data.userVo.avatar
+                    ? data.userVo.avatar
+                    : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
                   setToken(data.token);
                   setUserInfo(this.userInfo);
                   this.$ws.send({
