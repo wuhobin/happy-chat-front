@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import { getToken } from "@/utils/auth";
 
 const service = axios.create({
   baseURL: "/",
@@ -9,6 +10,10 @@ const service = axios.create({
 // http请求拦截器
 service.interceptors.request.use(
   (config) => {
+    const token = getToken(); // 从 localStorage 获取 Token
+    if (token) {
+      config.headers["token"] = `${token}`;
+    }
     return config;
   },
   (error) => {
@@ -24,7 +29,6 @@ service.interceptors.response.use(
   (error) => {
     if (error.response) {
       switch (error.response.status) {
-        
       }
     }
     return Promise.reject(error);

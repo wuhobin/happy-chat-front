@@ -1,7 +1,11 @@
 import { post, postJSON, get } from "@/api/request";
 
 export default {
-  getLoginQrCode(params) {
-    return get("/api/wx/getLoginQrCode", params);
+  // 获取验证码
+  GetLoginCode(params) {
+    return post("/api/login/send", params);
   },
+  UserLogin(params){
+    return post("/api/login/mobile-login", params);
+  }
 };
