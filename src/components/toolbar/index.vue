@@ -134,6 +134,9 @@ export default {
           this.$refs.upload.submit();
         } else {
           this.uploadEnabled = true;
+          if (this.$route.path !== "/userHome") {
+            this.$router.push("/userHome");
+          }
         }
       } else {
         this.uploadEnabled = true;
