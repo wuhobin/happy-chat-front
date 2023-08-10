@@ -12,6 +12,13 @@ class WS {
   off(callback) {
     worker.removeEventListener('message', callback)
   }
+   /**
+   * 向服务端发送消息
+   * @param {{ type: string, value: object }} data
+   */
+   send(data) {
+    worker.postMessage(JSON.stringify(data))
+  }
 }
 
 export default new WS()

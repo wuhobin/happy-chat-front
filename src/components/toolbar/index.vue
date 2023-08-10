@@ -59,12 +59,12 @@
 </template>
 
 <script>
+import { setToken, setUserInfo, getUserInfo } from "@/utils/auth";
+
 export default {
   name: "ToolBar",
   data() {
     return {
-      avatarUrl:
-        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       dialogFormVisible: false,
       LoginFormParams: {},
       rules: {
@@ -78,16 +78,34 @@ export default {
         sendCode: false,
         login: false,
       },
+      userInfo: {},
       ban: false,
       time: "获取",
       timeKey: true,
     };
   },
+  computed: {
+    avatarUrl() {
+      const userInfo = getUserInfo();
+      if (userInfo) {
+        return userInfo.avatar
+          ? userInfo.avatar
+          : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
+      } else {
+        return "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
+      }
+    },
+  },
   methods: {
     showLoginBox() {
-      this.LoginFormParams = {};
-      this.dialogFormVisible = true;
-      this.resetForm("loginForm");
+      const userInfo = getUserInfo();
+      if (userInfo) {
+
+      } else {
+        this.LoginFormParams = {};
+        this.dialogFormVisible = true;
+        this.resetForm("loginForm");
+      }
     },
     handelLogin() {
       this.UTILS.debounce(() => {
@@ -100,10 +118,25 @@ export default {
                 code: this.LoginFormParams.code,
               })
               .then((res) => {
-                console.log(res);
+                const { code, data, msg } = res;
+                if (code === 200) {
+                  this.userInfo = data.userVo;
+                  this.loading.login = false;
+                  this.dialogFormVisible = false;
+                  setToken(data.token);
+                  setUserInfo(this.userInfo);
+                  this.$ws.send({
+                    type: 'message',
+                    value: '登录成功'
+                  })
+                } else {
+                  this.loading.login = false;
+                  this.$message.error(msg);
+                }
               })
               .catch(() => {
                 this.loading.login = false;
+                this.$message.error("登录失败！");
               });
           }
         });
@@ -166,7 +199,10 @@ export default {
       this.LoginFormParams.code = this.LoginFormParams.code.replace(/\D/g, "");
     },
     handleMobileNumericInput() {
-      this.LoginFormParams.mobile = this.LoginFormParams.mobile.replace(/\D/g,"");
+      this.LoginFormParams.mobile = this.LoginFormParams.mobile.replace(
+        /\D/g,
+        ""
+      );
     },
   },
 };
