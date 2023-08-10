@@ -25,6 +25,6 @@ export function getUserInfo() {
   return userJson ? JSON.parse(userJson) : null;
 }
 
-export function removeUserInfo() {
+export function removeUser() {
   localStorage.removeItem(USER_KEY);
 }

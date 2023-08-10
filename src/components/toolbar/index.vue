@@ -1,10 +1,23 @@
 <template>
   <aside class="side-toolbar">
-    <el-avatar
+    <!-- <el-avatar
       :size="50"
       :src="avatarUrl"
       @click.native="showLoginBox"
-    ></el-avatar>
+    ></el-avatar> -->
+
+    <el-upload
+      class="avatar-uploader"
+      action="http://127.0.0.1:8081/api/oss/upload"
+      ref="upload"
+      :show-file-list="false"
+      :headers="{ Token: getLoginToken() }"
+      :on-success="handleAvatarSuccess"
+      :before-upload="beforeAvatarUpload"
+      :disabled="uploadEnabled"
+    >
+      <img :src="avatarUrl" class="avatar" @click="handleUploadClick" />
+    </el-upload>
 
     <el-dialog
       title="快登录一起玩耍吧~"
@@ -59,7 +72,7 @@
 </template>
 
 <script>
-import { setToken, setUserInfo, getUserInfo } from "@/utils/auth";
+import { setToken, setUserInfo, getUserInfo, getToken } from "@/utils/auth";
 
 export default {
   name: "ToolBar",
@@ -79,29 +92,39 @@ export default {
         login: false,
       },
       userInfo: {},
+      uploadEnabled: true,
       ban: false,
       time: "获取",
       timeKey: true,
+      avatarUrl: getUserInfo().avatar ? getUserInfo().avatar : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
     };
   },
-  computed: {
-    avatarUrl() {
-      const userInfo = getUserInfo();
-      if (userInfo) {
-        return userInfo.avatar
-          ? userInfo.avatar
-          : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
-      } else {
-        return "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
-      }
-    },
-  },
   methods: {
+    getLoginToken() {
+      return getToken();
+    },
+    handleUploadClick() {
+      this.showLoginBox();
+    },
+    handleAvatarSuccess(res, file) {
+      const downloadUrl = res.data.downloadUrl;
+      const userInfo = getUserInfo();
+      userInfo.avatar = downloadUrl;
+      setUserInfo(userInfo);
+      this.avatarUrl = downloadUrl
+    },
+    beforeAvatarUpload() {},
     showLoginBox() {
       const userInfo = getUserInfo();
       if (userInfo) {
-
+        if (!userInfo.avatar) {
+          this.uploadEnabled = false;
+          this.$refs.upload.submit();
+        } else {
+          this.uploadEnabled = true;
+        }
       } else {
+        this.uploadEnabled = true;
         this.LoginFormParams = {};
         this.dialogFormVisible = true;
         this.resetForm("loginForm");
@@ -126,9 +149,9 @@ export default {
                   setToken(data.token);
                   setUserInfo(this.userInfo);
                   this.$ws.send({
-                    type: 'message',
-                    value: '登录成功'
-                  })
+                    type: "message",
+                    value: "登录成功",
+                  });
                 } else {
                   this.loading.login = false;
                   this.$message.error(msg);
@@ -217,6 +240,23 @@ export default {
   padding: 20px 0;
   color: #fff;
   user-select: none;
+
+  .avatar-uploader .el-upload {
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    display: block;
+    cursor: pointer;
+    border-radius: 50%;
+  }
 
   /deep/ .el-avatar {
     cursor: pointer;

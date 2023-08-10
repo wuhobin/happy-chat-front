@@ -7,5 +7,8 @@ export default {
   },
   UserLogin(params){
     return post("/api/login/mobile-login", params);
+  },
+  UploadImage(params){
+    return post("/api/oss/upload", params);
   }
 };

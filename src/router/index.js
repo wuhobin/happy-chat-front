@@ -5,6 +5,10 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
   routes: [
-    
+    {
+      path: '/',
+      name: 'userHome',
+      component:() => import('@/views/userHome'),
+    },
   ],
 });

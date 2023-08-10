@@ -15,6 +15,7 @@ import {
   Message,
   Image,
   Dialog,
+  Upload
 } from "element-ui";
 
 import UTILS from "@/utils/tool"; //通用方法
@@ -29,6 +30,7 @@ Vue.use(Avatar);
 Vue.use(Input);
 Vue.use(Image);
 Vue.use(Button);
+Vue.use(Upload);
 
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;

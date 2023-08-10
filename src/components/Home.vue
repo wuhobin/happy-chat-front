@@ -49,6 +49,7 @@ export default {
 
     .router-view-wrapper {
       flex: 4;
+      padding: 20px 0;
     }
   }
 
