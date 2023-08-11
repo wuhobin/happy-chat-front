@@ -17,7 +17,10 @@ class WS {
    * @param {{ type: string, value: object }} data
    */
    send(data) {
-    worker.postMessage(JSON.stringify(data))
+    worker.postMessage(JSON.stringify({
+      type: 'message',
+      value: data
+    }))
   }
 }
 

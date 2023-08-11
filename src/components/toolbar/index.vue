@@ -74,6 +74,7 @@
 
 <script>
 import { setToken, setUserInfo, getUserInfo, getToken } from "@/utils/auth";
+import defaultAvatar from "@/assets/images/default-avatar.png";
 
 export default {
   name: "ToolBar",
@@ -100,8 +101,8 @@ export default {
       avatarUrl: getUserInfo()
         ? getUserInfo().avatar
           ? getUserInfo().avatar
-          : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-        : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+          : defaultAvatar
+        : defaultAvatar,
     };
   },
   methods: {
@@ -163,12 +164,14 @@ export default {
                   this.dialogFormVisible = false;
                   this.avatarUrl = data.userVo.avatar
                     ? data.userVo.avatar
-                    : "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
+                    : defaultAvatar;
                   setToken(data.token);
                   setUserInfo(this.userInfo);
                   this.$ws.send({
-                    type: "message",
-                    value: "登录成功",
+                    type: 1,
+                    data: {
+                      userId: data.userVo.id,
+                    },
                   });
                 } else {
                   this.loading.login = false;
