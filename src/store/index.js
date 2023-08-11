@@ -3,11 +3,21 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const actions = {};
+const actions = {
+  setOnlineUserNum(context, value) {
+    context.commit('SET_ONLINE_MUM',value);
+  },
+};
 
-const mutations = {};
+const mutations = {
+  SET_ONLINE_MUM(state, value) {
+    state.onLineUserNum = value;
+  },
+};
 
-const state = {};
+const state = {
+  onLineUserNum: 0,
+};
 
 export default new Vuex.Store({
   actions,
