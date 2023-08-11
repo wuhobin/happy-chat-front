@@ -5,6 +5,7 @@ import router from "@/router";
 import "@/assets/css/reset.css";
 // WebSocket处理
 import ws from "@/utils/websocket.js";
+import store from "@/store/index";
 
 import {
   Form,
@@ -41,4 +42,5 @@ Vue.prototype.resetForm = resetForm;
 new Vue({
   render: (h) => h(App),
   router,
+  store
 }).$mount("#app");
