@@ -10,5 +10,10 @@ export default {
   },
   UploadImage(params){
     return post("/api/oss/upload", params);
+  },
+  UserOnlineList(params){
+    return post("/api/member/onlineMemberList", params);
   }
+
+
 };

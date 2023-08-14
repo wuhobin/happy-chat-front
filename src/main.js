@@ -16,7 +16,7 @@ import {
   Message,
   Image,
   Dialog,
-  Upload
+  Upload,
 } from "element-ui";
 
 import UTILS from "@/utils/tool"; //通用方法
@@ -42,5 +42,5 @@ Vue.prototype.resetForm = resetForm;
 new Vue({
   render: (h) => h(App),
   router,
-  store
+  store,
 }).$mount("#app");

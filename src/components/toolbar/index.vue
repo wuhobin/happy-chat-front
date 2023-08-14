@@ -1,11 +1,5 @@
 <template>
   <aside class="side-toolbar">
-    <!-- <el-avatar
-      :size="50"
-      :src="avatarUrl"
-      @click.native="showLoginBox"
-    ></el-avatar> -->
-
     <el-upload
       class="avatar-uploader"
       action="http://127.0.0.1:8081/api/oss/upload"
@@ -19,6 +13,18 @@
     >
       <img :src="avatarUrl" class="avatar" @click="handleUploadClick" />
     </el-upload>
+
+    <div class="tool-warp">
+      <img
+        v-for="(item, index) in toolList"
+        :key="index"
+        class="tool-user tool-image"
+        :src="require(`@/assets/images/${item.image}`)"
+        :title="item.title"
+        :alt="item.title"
+        @click="toolClick(item)"
+      />
+    </div>
 
     <el-dialog
       title="快登录一起玩耍吧~"
@@ -103,6 +109,10 @@ export default {
           ? getUserInfo().avatar
           : defaultAvatar
         : defaultAvatar,
+      toolList: [
+        { image: "tool-user.png", title: "在线用户", route: "/memberList" },
+        { image: "friend-place.png", title: "朋友圈", route: "/memberList" },
+      ],
     };
   },
   methods: {
@@ -248,6 +258,9 @@ export default {
         ""
       );
     },
+    toolClick(item) {
+      this.$router.push(item.route);
+    },
   },
 };
 </script>
@@ -308,6 +321,22 @@ export default {
   .dialog-footer {
     .login-button {
       width: 100px;
+    }
+  }
+
+  .tool-warp {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 20px;
+
+    .tool-image {
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      margin-top: 15px;
     }
   }
 }

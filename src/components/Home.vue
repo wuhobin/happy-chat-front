@@ -48,8 +48,9 @@ export default {
     background-color: #272a37;
 
     .router-view-wrapper {
-      flex: 4;
-      padding: 20px 0;
+      flex: 1;
+      padding: 20px 20px 20px 0;
+      box-sizing: border-box;
     }
   }
 
@@ -57,7 +58,7 @@ export default {
     .wrapper {
       position: relative;
       flex-direction: row;
-      width: 80vw;
+      width: 65vw;
       height: 80vh;
       margin: 0 auto;
       margin-top: 10vh;
