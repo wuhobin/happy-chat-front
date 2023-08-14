@@ -340,6 +340,34 @@ export default {
     }
   }
 }
+
+@media only screen and (max-width: 640px) {
+  .side-toolbar {
+    position: relative;
+    flex-direction: row;
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    margin-top: 16px;
+
+    .tool-warp {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      left: 100px;
+      top: 0;
+
+      .tool-image {
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+        margin-left: 15px;
+      }
+    }
+  }
+}
 </style>
 
 <style>

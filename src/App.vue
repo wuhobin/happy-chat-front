@@ -18,7 +18,6 @@ export default {
   },
   mounted() {
     this.$ws.on((e) => {
-      console.log(e.data);
       const { type, value } = JSON.parse(e.data);
       switch (type) {
         case "message": {
@@ -39,17 +38,24 @@ export default {
   },
   methods: {
     onMessage(value) {
-      console.log("websocket收到后端消息", value);
       const { type, data } = JSON.parse(value);
+      console.log("websocket收到后端消息 type", type);
+      console.log("websocket收到后端消息 data", data);
       switch (type) {
+        case 5: {
+          // 用户上线
+          this.$store.commit("SET_ONLINE_MUM", data.onlineNum);
+          this.$store.commit("INCR_ONLINE_MEMBER", data.changeList);
+          break;
+        }
         case 6: {
           //让前端token失效
-          removeToken()
-          removeUser()
+          removeToken();
+          removeUser();
           break;
         }
         default: {
-          console.log("接收到未处理类型的消息:", params);
+          console.log("接收到未处理类型的消息:", value);
           break;
         }
       }
@@ -59,6 +65,17 @@ export default {
       if (token) {
         this.$ws.send({ type: 3, data: { token } });
       }
+      this.getOnlineList()
+    },
+    getOnlineList() {
+      this.$http.UserOnlineList().then((res) => {
+        const { data, code } = res;
+        console.log(res);
+        if (code === 200) {
+          this.$store.commit("SET_ONLINE_MUM", data.onlineCount);
+          this.$store.commit("SET_ONLINE_MEMBER_LIST", data.onlineList);
+        }
+      });
     },
     onClose() {},
   },

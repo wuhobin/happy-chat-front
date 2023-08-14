@@ -48,7 +48,7 @@ export default {
     background-color: #272a37;
 
     .router-view-wrapper {
-      flex: 1;
+      width: 44vw;
       padding: 20px 20px 20px 0;
       box-sizing: border-box;
     }
