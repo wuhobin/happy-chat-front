@@ -77,7 +77,7 @@ export default {
         }
       });
     },
-    onClose() {},
+    onClose() { },
   },
 };
 </script>
@@ -86,10 +86,9 @@ export default {
 #app {
   width: 100vw;
   height: 100vh;
-  background-image: url("@/assets/images/bg.webp");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: url("@/assets/images/bg.jpg") no-repeat center;
+  background-size: 300% 300%;
+  animation: gradientBG 100s ease infinite;
   overflow: hidden;
 }
 </style>
