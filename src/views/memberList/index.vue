@@ -14,11 +14,53 @@
         </p>
         <p class="address">湖北 武汉</p>
       </div>
+      <div class="user-item">
+        <div class="avatar-border">
+          <img src="http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg" alt="">
+        </div>
+        <p class="nickname">
+          星球用户A00001
+        </p>
+        <p class="address">湖北 武汉</p>
+      </div>
+      <div class="user-item">
+        <div class="avatar-border">
+          <img src="http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg" alt="">
+        </div>
+        <p class="nickname">
+          星球用户A00001
+        </p>
+        <p class="address">湖北 武汉</p>
+      </div>
+      <div class="user-item">
+        <div class="avatar-border">
+          <img src="http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg" alt="">
+        </div>
+        <p class="nickname">
+          星球用户A00001
+        </p>
+        <p class="address">湖北 武汉</p>
+      </div>
+      <div class="user-item">
+        <div class="avatar-border">
+          <img src="http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg" alt="">
+        </div>
+        <p class="nickname">
+          星球用户A00001
+        </p>
+        <p class="address">湖北 武汉</p>
+      </div>
+      <div class="user-item">
+        <div class="avatar-border">
+          <img src="http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg" alt="">
+        </div>
+        <p class="nickname">
+          星球用户A00001
+        </p>
+        <p class="address">湖北 武汉</p>
+      </div>
     </div>
-    <div class="user-item"></div>
-    <div class="user-item"></div>
-    <div class="user-item"></div>
-
+   
 
 
   </div>

@@ -272,6 +272,7 @@ export default {
   align-items: center;
   width: 80px;
   padding: 20px 0;
+  border-right: 1px solid var(--maxLightGray);
   color: #fff;
   user-select: none;
 

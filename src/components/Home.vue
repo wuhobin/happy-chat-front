@@ -44,11 +44,11 @@ export default {
     width: 100vw;
     height: 100%;
     height: 100dvh;
-    color: #fff;
-    background-color: #272a37;
+    border-radius: 10px;
+    background-color: var(--white);
 
     .router-view-wrapper {
-      width: 44vw;
+      width: calc(100% - 360px);
       padding: 20px 20px 20px 0;
       box-sizing: border-box;
     }
@@ -62,7 +62,8 @@ export default {
       height: 80vh;
       margin: 0 auto;
       margin-top: 10vh;
-      border-radius: 16px;
+      background-color: var(--white);
+      border-radius: 10px;
     }
   }
   .footer {
