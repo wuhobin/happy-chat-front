@@ -331,13 +331,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    bottom: 20px;
+    bottom: 40px;
 
     .tool-image {
       cursor: pointer;
-      width: 28px;
-      height: 28px;
-      margin-top: 15px;
+      width: 26px;
+      height: 26px;
+      margin-top: 20px;
     }
   }
 }
