@@ -20,12 +20,12 @@ const mutations = {
   },
   //增加在线用户
   INCR_ONLINE_MEMBER(state, value) {
-    state.onLineMemberList.unshift(value);
+    if (!state.onLineMemberList.some((item) => item.id === value.id)) {
+      state.onLineMemberList.unshift(value);
+    }
   },
   //减少在线用户
-  DECR_ONLINE_MEMBER(state, value) {
-
-  },
+  DECR_ONLINE_MEMBER(state, value) {},
 };
 
 const state = {

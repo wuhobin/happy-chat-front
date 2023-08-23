@@ -19,6 +19,7 @@ export default {
   mounted() {
     this.$ws.on((e) => {
       const { type, value } = JSON.parse(e.data);
+      console.log(JSON.parse(e.data))
       switch (type) {
         case "message": {
           this.onMessage(value);
@@ -45,7 +46,7 @@ export default {
         case 5: {
           // 用户上线
           this.$store.commit("SET_ONLINE_MUM", data.onlineNum);
-          this.$store.commit("INCR_ONLINE_MEMBER", data.changeList);
+          this.$store.commit("INCR_ONLINE_MEMBER", data.changeList[0]);
           break;
         }
         case 6: {

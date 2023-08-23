@@ -14,6 +14,16 @@
       <img :src="avatarUrl" class="avatar" @click="handleUploadClick" />
     </el-upload>
 
+    <div :class="['top ', { active: isChatActive }]" @click="clickChat">
+      <img :src="require(`@/assets/images/chat-list.png`)" alt="" />
+      <p>聊天</p>
+    </div>
+
+    <div :class="['top ', { active: isFriendActive }]" @click="clickFriend">
+      <img :src="require(`@/assets/images/friend.png`)" alt="" />
+      <p>好友</p>
+    </div>
+
     <div class="tool-warp">
       <img
         v-for="(item, index) in toolList"
@@ -113,6 +123,8 @@ export default {
         { image: "tool-user.png", title: "在线用户", route: "/memberList" },
         { image: "friend-place.png", title: "朋友圈", route: "/memberList" },
       ],
+      isChatActive: true,
+      isFriendActive: false
     };
   },
   methods: {
@@ -261,6 +273,14 @@ export default {
     toolClick(item) {
       this.$router.push(item.route);
     },
+    clickChat(){
+      this.isFriendActive = false
+      this.isChatActive = true;
+    },
+    clickFriend(){
+      this.isChatActive = false;
+      this.isFriendActive = true
+    }
   },
 };
 </script>
@@ -339,6 +359,24 @@ export default {
       height: 26px;
       margin-top: 20px;
     }
+  }
+
+  .top {
+    width: 100%;
+    text-align: center;
+    color: var(--fontColor);
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 20px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .active{
+    color: var(--blue);
   }
 }
 
