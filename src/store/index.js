@@ -26,11 +26,18 @@ const mutations = {
   },
   //减少在线用户
   DECR_ONLINE_MEMBER(state, value) {},
+  
+  // 设置组件RoomList 展示类型
+  SET_MIDDLE_LIST_TYPE(state, value) {
+    state.middleMsgType = value
+  },
 };
 
 const state = {
   onLineUserNum: 0,
   onLineMemberList: [],
+  // 组件RoomList 展示类型 1是聊天 2是联系人 默认是1
+  middleMsgType: 1
 };
 
 export default new Vuex.Store({

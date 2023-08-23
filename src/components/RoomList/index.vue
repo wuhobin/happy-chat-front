@@ -1,55 +1,64 @@
 <template>
-  <div class="chat-message">
-    <div
-      v-for="(item, index) in roomList"
-      :key="index"
-      :class="['chat-message-item ', { active: activeChat === item.id }]"
-      @click="activeChat = item.id"
-    >
-      <el-avatar shape="circle" :size="38" :src="item.avatar" />
-      <div class="message-info">
-        <div style="white-space: nowrap">
-          <span class="person">{{ item.msgName }}</span>
-          <span v-if="item.tag" class="tag">{{ item.tag }}</span>
+  <div class="room-list">
+    <div v-if="middleMsgType === 1">
+      <div
+        v-for="(item, index) in roomList"
+        :class="['room-message ', { active: activeChat === item.id }]"
+        :key="index"
+        @click="handlerMsg(item)"
+      >
+        <el-avatar shape="square" :size="40" :src="item.avatar"></el-avatar>
+        <div>
+          <p class="room-name">{{ item.roomName }}</p>
+          <p class="last-message">{{ item.lastMsg }}</p>
         </div>
-        <div class="message-message">
-          {{ (item.name || "") + "：" + item.lastMsg }}
-        </div>
+        <span class="message-time">{{ item.lastMsgTime }}</span>
       </div>
-      <span class="message-time">{{ item.lastMsgTime }}</span>
     </div>
+
+    <div class="friend-message"></div>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import { mapState } from "vuex";
 
 export default {
   name: "RoomList",
   data() {
     return {
-      activeChat: ref(1),
+      activeChat: "",
       roomList: [
         {
           id: 1,
-          msgName: "通知",
-          name: "机器人",
-          avatar: "",
-          tag: "机器人",
-          lastMsg: "欢迎使用MallChat",
+          roomName: "愉聊All People",
+          avatar: "http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg",
+          lastMsg: "欢迎使用HappyChat",
           lastMsgTime: "13:54",
         },
         {
           id: 2,
-          msgName: "通知",
-          name: "机器人",
-          avatar: "",
-          tag: "机器人",
-          lastMsg: "欢迎使用MallChat",
+          roomName: "愉聊All People",
+          avatar: "http://image.wuhobin.top/chat/1691663394478wgFYNQIh.jpg",
+          lastMsg: "111",
           lastMsgTime: "13:54",
         },
       ],
     };
+  },
+  computed: {
+    ...mapState(["middleMsgType"]),
+  },
+  watch:{
+    middleMsgType(){
+      this.activeChat = ''
+    }
+  },
+  methods: {
+    handlerMsg(item) {
+      this.activeChat = item.id;
+    },
   },
 };
 </script>

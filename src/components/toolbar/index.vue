@@ -276,10 +276,12 @@ export default {
     clickChat(){
       this.isFriendActive = false
       this.isChatActive = true;
+      this.$store.commit('SET_MIDDLE_LIST_TYPE',1)
     },
     clickFriend(){
       this.isChatActive = false;
       this.isFriendActive = true
+      this.$store.commit('SET_MIDDLE_LIST_TYPE',2)
     }
   },
 };
