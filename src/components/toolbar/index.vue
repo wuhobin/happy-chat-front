@@ -39,7 +39,7 @@
     <el-dialog
       title="快登录一起玩耍吧~"
       :visible.sync="dialogFormVisible"
-      width="25%"
+      width="40%"
     >
       <el-form
         :model="LoginFormParams"

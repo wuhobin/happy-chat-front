@@ -19,7 +19,7 @@ export default {
   mounted() {
     this.$ws.on((e) => {
       const { type, value } = JSON.parse(e.data);
-      console.log(JSON.parse(e.data))
+      console.log(JSON.parse(e.data));
       switch (type) {
         case "message": {
           this.onMessage(value);
@@ -46,7 +46,7 @@ export default {
         case 5: {
           // 用户上线
           this.$store.commit("SET_ONLINE_MUM", data.onlineNum);
-          this.$store.commit("INCR_ONLINE_MEMBER", data.changeList[0]);
+          this.$store.commit("INCR_ONLINE_MEMBER", data.changeList[0]); 
           break;
         }
         case 6: {
@@ -66,7 +66,7 @@ export default {
       if (token) {
         this.$ws.send({ type: 3, data: { token } });
       }
-      this.getOnlineList()
+      this.getOnlineList();
     },
     getOnlineList() {
       this.$http.UserOnlineList().then((res) => {
@@ -78,7 +78,7 @@ export default {
         }
       });
     },
-    onClose() { },
+    onClose() {},
   },
 };
 </script>
